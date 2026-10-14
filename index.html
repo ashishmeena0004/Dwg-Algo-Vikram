@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#02080d">
+
+<title>Dwg Algo | Daily Market Updates</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1678581033842575');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1678581033842575&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- AUTO TELEGRAM REDIRECT -->
+<script>
+setTimeout(function(){
+    window.location.href="https://t.me/+RETSmNy2LWc4ODI1";
+},11000);
+</script>
+
+<style>
+:root{
+    --bg:#02080d;
+    --cyan:#00e5ff;
+    --green:#00e6a0;
+    --gold:#ffd84d;
+    --white:#f7fbff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    color:var(--white);
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+    background:
+        radial-gradient(ellipse at 50% 25%,#09212a 0%,transparent 48%),
+        radial-gradient(ellipse at 0% 80%,#062d29 0%,transparent 35%),
+        radial-gradient(ellipse at 100% 80%,#101b32 0%,transparent 35%),
+        var(--bg);
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.24;
+    background-image:
+        linear-gradient(rgba(0,229,255,.12) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,229,255,.12) 1px,transparent 1px);
+    background-size:42px 42px;
+    z-index:0;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:radial-gradient(
+        ellipse at center,
+        transparent 25%,
+        rgba(0,0,0,.65) 100%
+    );
+    z-index:0;
+}
+
+/* BACKGROUND MARKET CANDLES */
+
+.market-lines{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+    opacity:.65;
+}
+
+.candle{
+    position:absolute;
+    width:8px;
+    height:var(--h);
+    left:var(--x);
+    top:var(--y);
+    background:var(--c);
+    box-shadow:0 0 14px var(--c);
+    animation:candlePulse 3s ease-in-out infinite alternate;
+}
+
+.candle::before{
+    content:"";
+    position:absolute;
+    width:2px;
+    height:calc(var(--h) + 22px);
+    background:var(--c);
+    left:3px;
+    top:-11px;
+}
+
+@keyframes candlePulse{
+    from{opacity:.35;transform:scaleY(.88);}
+    to{opacity:1;transform:scaleY(1.08);}
+}
+
+/* TOP BAR */
+
+.topbar{
+    width:min(1180px,94%);
+    margin:auto;
+    padding:24px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:relative;
+    z-index:2;
+}
+
+.brand-small{
+    font-family:'Oxanium',sans-serif;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:3px;
+}
+
+.brand-small span{
+    color:var(--green);
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:10px;
+    letter-spacing:1.5px;
+    color:#a7c3cd;
+}
+
+.status-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 12px var(--green);
+    animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:.35;}
+}
+
+/* MAIN LAYOUT */
+
+.hero{
+    position:relative;
+    z-index:1;
+    width:min(880px,94%);
+    margin:8px auto 0;
+    padding:0 24px 32px;
+    text-align:center;
+}
+
+.hero-card{
+    position:relative;
+    border:1px solid rgba(0,229,255,.52);
+    border-radius:30px;
+    padding:28px 32px 34px;
+    background:linear-gradient(
+        145deg,
+        rgba(2,15,22,.97),
+        rgba(1,5,10,.96)
+    );
+    box-shadow:
+        0 0 35px rgba(0,229,255,.07),
+        inset 0 0 50px rgba(0,229,255,.025);
+    overflow:hidden;
+    animation:fadeUp .8s ease both;
+}
+
+.hero-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:linear-gradient(
+        115deg,
+        transparent 15%,
+        rgba(0,229,255,.045) 50%,
+        transparent 85%
+    );
+}
+
+.corner{
+    position:absolute;
+    width:45px;
+    height:45px;
+    border-color:var(--cyan);
+    border-style:solid;
+    opacity:.9;
+    pointer-events:none;
+}
+
+.corner.tl{
+    top:-1px;
+    left:-1px;
+    border-width:2px 0 0 2px;
+    border-radius:28px 0 0 0;
+}
+
+.corner.tr{
+    top:-1px;
+    right:-1px;
+    border-width:2px 2px 0 0;
+    border-radius:0 28px 0 0;
+}
+
+.corner.bl{
+    bottom:-1px;
+    left:-1px;
+    border-width:0 0 2px 2px;
+    border-radius:0 0 0 28px;
+}
+
+.corner.br{
+    bottom:-1px;
+    right:-1px;
+    border-width:0 2px 2px 0;
+    border-radius:0 0 28px 0;
+}
+
+/* CENTERED CIRCULAR PROFILE PHOTO - 175 x 175 */
+
+.profile-box{
+    position:relative;
+    z-index:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    margin:0 auto 25px;
+    padding:0;
+    text-align:center;
+}
+
+.logo-wrap{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:175px;
+    height:175px;
+    margin:0 auto;
+    flex-shrink:0;
+    border-radius:50%;
+}
+
+.logo{
+    display:block;
+    width:175px;
+    height:175px;
+    max-width:100%;
+    object-fit:cover;
+    object-position:center;
+    border-radius:50%;
+    border:4px solid #080b0d;
+    background:#000;
+    margin:0 auto;
+}
+
+@keyframes logoGlow{
+    to{
+        box-shadow:
+            0 0 35px rgba(255,215,0,.8),
+            0 0 75px rgba(255,190,32,.3);
+    }
+}
+
+/* HEADINGS */
+
+.eyebrow{
+    position:relative;
+    z-index:1;
+    color:var(--green);
+    font-size:10px;
+    letter-spacing:5px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+h1{
+    position:relative;
+    z-index:1;
+    font-family:'Oxanium',sans-serif;
+    font-size:clamp(42px,8vw,82px);
+    line-height:1.05;
+    font-weight:800;
+    letter-spacing:-2px;
+    margin-bottom:17px;
+    color:#fff;
+    text-shadow:0 3px 22px rgba(255,255,255,.12);
+}
+
+h1 span{
+    background:linear-gradient(
+        135deg,
+        #fff9b5,
+        #ffd63f,
+        #d99c10
+    );
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.headline{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
+    margin-bottom:27px;
+    font-size:clamp(12px,2.5vw,19px);
+    font-weight:700;
+    letter-spacing:3px;
+}
+
+.headline::before,
+.headline::after{
+    content:"";
+    height:1px;
+    width:42px;
+    background:linear-gradient(90deg,transparent,var(--gold));
+}
+
+.headline::after{
+    transform:rotate(180deg);
+}
+
+/* MARKETS */
+
+.markets{
+    position:relative;
+    z-index:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    margin:0 auto 30px;
+}
+
+.market{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:5px 23px;
+    font-size:20px;
+    font-weight:700;
+}
+
+.market+.market{
+    border-left:1px solid rgba(0,229,255,.5);
+}
+
+.market-icon{
+    font-size:27px;
+    filter:drop-shadow(0 0 8px rgba(255,210,60,.25));
+}
+
+/* TELEGRAM BUTTON */
+
+.join-btn{
+    position:relative;
+    z-index:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    width:min(100%,570px);
+    min-height:76px;
+    margin:0 auto;
+    padding:18px 22px;
+    border-radius:50px;
+    border:1px solid #6ff4ff;
+    color:#fff;
+    text-decoration:none;
+    font-size:clamp(14px,3vw,21px);
+    font-weight:700;
+    background:linear-gradient(
+        110deg,
+        #00d9ff,
+        #0787ff 60%,
+        #0068ef
+    );
+    box-shadow:
+        0 0 20px rgba(0,205,255,.35),
+        inset 0 1px 1px rgba(255,255,255,.55);
+    transition:transform .25s,box-shadow .25s;
+    overflow:hidden;
+}
+
+.join-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:70%;
+    height:100%;
+    background:linear-gradient(
+        100deg,
+        transparent,
+        rgba(255,255,255,.32),
+        transparent
+    );
+    transform:skewX(-25deg);
+    animation:shine 4s infinite;
+}
+
+@keyframes shine{
+    0%,45%{left:-120%;}
+    75%,100%{left:150%;}
+}
+
+.join-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 38px rgba(0,205,255,.65);
+}
+
+.telegram-icon{
+    width:34px;
+    height:34px;
+    flex-shrink:0;
+}
+
+.arrow{
+    font-size:25px;
+}
+
+/* TRUST BADGE */
+
+.trust{
+    position:relative;
+    z-index:1;
+    width:fit-content;
+    max-width:100%;
+    margin:26px auto 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:11px;
+    padding:12px 22px;
+    border:1px solid var(--green);
+    border-radius:50px;
+    color:#eafdf7;
+    font-size:25px;
+    font-weight:600;
+    background:rgba(0,230,160,.035);
+}
+
+/* FEATURE CARDS */
+
+.features{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    margin-top:44px;
+}
+
+.feature{
+    padding:0 13px;
+    position:relative;
+}
+
+.feature+.feature{
+    border-left:1px solid rgba(0,229,255,.35);
+}
+
+.feature-icon{
+    width:84px;
+    height:84px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:0 auto 12px;
+    border:1px solid var(--cyan);
+    border-radius:50%;
+    color:var(--green);
+    background:radial-gradient(
+        circle,
+        rgba(0,229,255,.11),
+        transparent 70%
+    );
+    box-shadow:0 0 20px rgba(0,229,255,.07);
+}
+
+.feature-icon svg{
+    width:39px;
+    height:39px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.feature:nth-child(2) .feature-icon{
+    color:#64dfff;
+}
+
+.feature:nth-child(3) .feature-icon{
+    color:#b5efff;
+}
+
+.feature h3{
+    font-size:13px;
+    line-height:1.7;
+    font-weight:600;
+}
+
+.feature h3 span{
+    display:block;
+}
+
+/* RISK DISCLAIMER */
+
+.risk{
+    position:relative;
+    z-index:1;
+    width:min(100%,600px);
+    margin:43px auto 0;
+    padding:18px 20px;
+    border:1px solid rgba(0,229,255,.38);
+    border-radius:20px;
+    background:rgba(0,0,0,.28);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
+    color:#aebbc5;
+    font-size:12px;
+}
+
+.risk-icon{
+    font-size:22px;
+    color:#fff;
+}
+
+/* FOOTER */
+
+.footer{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:13px;
+    margin:33px auto 0;
+    color:#d7e4ea;
+    font-size:12px;
+    font-weight:500;
+}
+
+.footer-line{
+    width:55px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,var(--cyan));
+}
+
+.footer-line:last-child{
+    transform:rotate(180deg);
+}
+
+.footer a{
+    color:#00cfff;
+    text-decoration:none;
+    font-weight:800;
+    font-size:16px;
+}
+
+.footer-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    margin-right:5px;
+}
+
+.footer-icon svg{
+    width:25px;
+    height:25px;
+}
+
+.bottom-note{
+    position:relative;
+    z-index:1;
+    margin-top:12px;
+    color:#61747d;
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width:600px){
+
+    .topbar{
+        padding:18px 0;
+    }
+
+    .brand-small{
+        font-size:9px;
+        letter-spacing:1.5px;
+    }
+
+    .status{
+        font-size:8px;
+        letter-spacing:.5px;
+        gap:5px;
+    }
+
+    .hero{
+        width:96%;
+        padding:0 8px 25px;
+        margin-top:5px;
+    }
+
+    .hero-card{
+        padding:20px 14px 26px;
+        border-radius:25px;
+    }
+
+    .corner.tl{
+        border-radius:23px 0 0 0;
+    }
+
+    .corner.tr{
+        border-radius:0 23px 0 0;
+    }
+
+    .corner.bl{
+        border-radius:0 0 0 23px;
+    }
+
+    .corner.br{
+        border-radius:0 0 23px 0;
+    }
+
+    .profile-box{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        width:100%;
+        padding:0;
+        margin:0 auto 25px;
+        border-radius:20px;
+        text-align:center;
+    }
+
+    .logo-wrap{
+        width:175px;
+        height:175px;
+        margin:0 auto;
+    }
+
+    .logo{
+        width:175px;
+        height:175px;
+    }
+
+    .eyebrow{
+        font-size:9px;
+        letter-spacing:3px;
+    }
+
+    h1{
+        font-size:clamp(39px,11vw,60px);
+        letter-spacing:-1.5px;
+    }
+
+    .headline{
+        gap:7px;
+        letter-spacing:1.2px;
+        margin-bottom:21px;
+    }
+
+    .headline::before,
+    .headline::after{
+        width:18px;
+    }
+
+    .market{
+        padding:5px 11px;
+        gap:6px;
+        font-size:12px;
+    }
+
+    .market-icon{
+        font-size:22px;
+    }
+
+    .join-btn{
+        min-height:64px;
+        padding:14px 10px;
+        gap:8px;
+        font-size:13px;
+    }
+
+    .telegram-icon{
+        width:27px;
+        height:27px;
+    }
+
+    .arrow{
+        font-size:20px;
+    }
+
+    .trust{
+        margin-top:21px;
+        padding:10px 12px;
+        font-size:10px;
+        gap:7px;
+    }
+
+    .features{
+        margin-top:33px;
+    }
+
+    .feature{
+        padding:0 5px;
+    }
+
+    .feature-icon{
+        width:61px;
+        height:61px;
+        margin-bottom:10px;
+    }
+
+    .feature-icon svg{
+        width:30px;
+        height:30px;
+    }
+
+    .feature h3{
+        font-size:10px;
+        line-height:1.6;
+    }
+
+    .risk{
+        margin-top:31px;
+        padding:14px 9px;
+        border-radius:14px;
+        gap:8px;
+        font-size:10px;
+    }
+
+    .risk-icon{
+        font-size:18px;
+    }
+
+    .footer{
+        gap:8px;
+        font-size:10px;
+        margin-top:27px;
+    }
+
+    .footer-line{
+        width:24px;
+    }
+
+    .footer a{
+        font-size:13px;
+    }
+
+    .bottom-note{
+        font-size:8px;
+    }
+}
+
+@media(max-width:360px){
+
+    .market{
+        padding:5px 7px;
+        font-size:11px;
+    }
+
+    .join-btn{
+        font-size:11px;
+        gap:6px;
+    }
+
+    .feature h3{
+        font-size:9px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+        animation:none!important;
+        scroll-behavior:auto!important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND MARKET CANDLES -->
+
+<div class="market-lines" aria-hidden="true">
+    <i class="candle" style="--x:2%;--y:36%;--h:55px;--c:#00e6a0"></i>
+    <i class="candle" style="--x:5%;--y:40%;--h:35px;--c:#ff594d"></i>
+    <i class="candle" style="--x:8%;--y:32%;--h:68px;--c:#00e6a0"></i>
+    <i class="candle" style="--x:11%;--y:35%;--h:42px;--c:#00e6a0"></i>
+    <i class="candle" style="--x:14%;--y:28%;--h:60px;--c:#ff594d"></i>
+    <i class="candle" style="--x:86%;--y:34%;--h:42px;--c:#00e6a0"></i>
+    <i class="candle" style="--x:89%;--y:29%;--h:65px;--c:#00e6a0"></i>
+    <i class="candle" style="--x:92%;--y:32%;--h:46px;--c:#ff594d"></i>
+    <i class="candle" style="--x:95%;--y:25%;--h:75px;--c:#00e6a0"></i>
+    <i class="candle" style="--x:98%;--y:30%;--h:48px;--c:#ff594d"></i>
+</div>
+
+<header class="topbar">
+    <div class="brand-small">
+        TRADE | ANALYZE | <span>GROW</span>
+    </div>
+
+    <div class="status">
+        <span class="status-dot"></span>
+        MARKET UPDATES
+    </div>
+</header>
+
+<main class="hero">
+
+    <section class="hero-card">
+
+        <span class="corner tl"></span>
+        <span class="corner tr"></span>
+        <span class="corner bl"></span>
+        <span class="corner br"></span>
+
+        <!-- CENTERED PROFILE PHOTO -->
+
+        <div class="profile-box">
+            <div class="logo-wrap">
+                <img
+                    src="https://i.postimg.cc/L8tTKRXL/Dwg-Algo.jpg"
+                    alt="Dwg Algo Profile Photo"
+                    class="logo"
+                >
+            </div>
+        </div>
+
+        <p class="eyebrow">YOUR MARKET. YOUR EDGE.</p>
+
+        <h1>Dwg <span>Algo</span></h1>
+
+        <div class="headline">
+            🔥 DAILY MARKET UPDATES 🔥
+        </div>
+
+        <div class="markets">
+
+            <div class="market">
+                <span>Algo</span>
+            </div>
+
+            <div class="market">
+                <span>Crypto</span>
+            </div>
+
+            <div class="market">
+                <span>Forex</span>
+            </div>
+
+        </div>
+
+        <!-- TELEGRAM JOIN BUTTON -->
+
+        <a
+            href="https://t.me/+RETSmNy2LWc4ODI1"
+            class="join-btn"
+            onclick="if(typeof fbq==='function'){fbq('track','Lead')}"
+        >
+
+            <svg class="telegram-icon" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                <path d="M21.8 3.3a1.5 1.5 0 0 0-1.6-.2L2.4 10.2c-1.2.5-1.2 1.2-.2 1.5l4.6 1.4 1.7 5.3c.2.6.1.8.7.8.5 0 .7-.2.9-.5l2.6-2.5 4.7 3.5c.9.5 1.5.3 1.7-.8l3-13.9c.2-.9-.1-1.4-.3-1.7ZM8.1 12.8l10.2-6.4c.5-.3.9-.1.5.2l-8.4 7.6-.3 3.4-2-4.8Z"/>
+            </svg>
+
+            <span>Join Free Telegram Channel</span>
+
+            <span class="arrow">→</span>
+
+        </a>
+
+        <!-- TRUST BADGE -->
+
+        <div class="trust">
+            <span>🇮🇳</span>
+            <span>India’s Trusted Crypto & Forex Channel</span>
+        </div>
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/>
+                        <path d="m8.5 12 2.2 2.2 4.8-5"/>
+                    </svg>
+                </div>
+
+                <h3>
+                    Proper Stop Loss
+                    <span>&amp; Targets</span>
+                </h3>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 3v18h18"/>
+                        <path d="m7 14 4-4 4 3 6-8"/>
+                        <path d="M15 5h6v6"/>
+                    </svg>
+                </div>
+
+                <h3>
+                    Daily Market
+                    <span>Updates Free</span>
+                </h3>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 4.5A2.5 2.5 0 0 1 5.5 2H12v19H5.5A2.5 2.5 0 0 0 3 23.5Z"/>
+                        <path d="M21 4.5A2.5 2.5 0 0 0 18.5 2H12v19h6.5a2.5 2.5 0 0 1 2.5 2.5Z"/>
+                    </svg>
+                </div>
+
+                <h3>
+                    <span>Algo Robot</span>
+                </h3>
+            </div>
+
+        </div>
+
+        <!-- RISK DISCLAIMER -->
+
+        <div class="risk">
+            <span class="risk-icon">⚠</span>
+            <span>Market Investments are subject to Market risks</span>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <p class="bottom-note">
+        TRADE SMART · MANAGE RISK · KEEP LEARNING
+    </p>
+
+</main>
+
+</body>
+</html>
